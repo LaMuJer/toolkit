@@ -1,0 +1,6 @@
+
+
+store => reducer => action
+
+action => type => payload
+

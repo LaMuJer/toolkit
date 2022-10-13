@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import toggleReducer from "./store/reducer/toggleReducer";
+import ComponentOne from "./components/ComponentOne";
+import ComponentTwo from "./components/ComponentTwo";
+import {useDispatch, useSelector} from "react-redux";
+import {Toggle} from "./store/action/toggleAction";
+import {useState} from "react";
+import Show from "./components/Show";
+import Function from "./components/Function";
+import {toggle} from "./store/tkReducer/toggleSlice";
 
 function App() {
+
+    const state = useSelector(state => state)
+    console.log(state)
+    const dispatch = useDispatch()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <ComponentOne/>
+        <ComponentTwo/>
+
+        {state.toggle && (<h1>Welcome To Redux</h1>)}
+        <button onClick={() => Toggle(dispatch)}>
+            Toggle
+        </button>
+
+        <Show />
+        <Function />
+
+        {state.tkToggle && <h1>Hello World</h1>}
+        <button onClick={() => {dispatch(toggle())}}>Toggle</button>
     </div>
   );
 }
